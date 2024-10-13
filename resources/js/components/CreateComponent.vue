@@ -56,6 +56,8 @@ export default {
                     console.log(result);
                     this.name = null;
                     this.content = null;
+                    
+                    this.$parent.$refs.index.getNotes();
                 });
         },
     },
