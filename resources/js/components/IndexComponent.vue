@@ -2,13 +2,21 @@
     <div v-for="note in notes" class="container mt-4">
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <div class="card mb-4">
+                <div class="card mb-4 position-relative">
                     <div class="card-body">
+
+                        <a href="#" class="edit-link">Edit</a>
+                        <a href="#" class="delete-link">Delete</a>
+
                         <h5 class="card-title text-center">{{ note.name }}</h5>
 
-                        <p class="card-text text-center">
-                            {{ note.content }}
-                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <p class="card-text text-center mb-0" style="max-width: 100%; word-wrap: break-word;">
+                                {{ note.content }}
+                            </p>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -41,4 +49,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.edit-link {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.delete-link {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+</style>
