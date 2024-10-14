@@ -4,7 +4,7 @@ namespace App\Http\Requests\Note;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class NoteRequest extends FormRequest
 {
     public function authorize(): bool
     {
