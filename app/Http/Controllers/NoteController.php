@@ -32,4 +32,10 @@ class NoteController extends Controller
 
         return $note;
     }
+
+    public function destroy(Note $note) 
+    {
+        $note->delete();
+        return response([]);
+    }
 }

@@ -5,7 +5,7 @@
                 <div class="card mb-4 position-relative">
                     <div class="card-body">
 
-                        <a href="#" class="delete-link">Delete</a>
+                        <a href="#" @click.prevent="deleteNote(note.id)" class="delete-link">Delete</a>
                         <a href="#" @click.prevent="changeEditId(note.id)" :class="isEditing(note.id) ? 'd-none' : ''"
                             class="edit-link">Edit</a>
                         <a href="#" @click.prevent="updateNote(note.id)" :class="isEditing(note.id) ? '' : 'd-none'"
@@ -78,6 +78,12 @@ export default {
             }).then((result) => {
                 this.getNotes(); 
                 this.editNoteId = null;
+            });
+        },
+
+        deleteNote(id) {
+            axios.delete(`/api/notes/destroy/${id}`).then((result) => {
+                this.getNotes();
             });
         }
     },
