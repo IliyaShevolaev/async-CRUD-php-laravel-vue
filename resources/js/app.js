@@ -1,10 +1,12 @@
 import './bootstrap';
-import { createApp } from 'vue';
 
+import { createApp } from 'vue';
 const app = createApp({});
 
-import MainComponent from './components/MainComponent.vue';
-app.component('main-component', MainComponent);
+import Index from './components/Index.vue';
+app.component('index', Index);
 
+import router from './router';
+app.use(router);
 
 app.mount('#app');
