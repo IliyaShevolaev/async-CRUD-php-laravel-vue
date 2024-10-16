@@ -44,7 +44,6 @@ export default {
                 .then((result) => {
                     this.name = result.data.data.name;
                     this.content = result.data.data.content;
-                    console.log(result);
                 });
         },
 

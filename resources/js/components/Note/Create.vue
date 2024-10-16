@@ -38,7 +38,6 @@ export default {
                 name: this.name,
                 content: this.content,
             }).then((result) => {
-                console.log(result);
                 this.$router.push({ name: 'note.index' });
             });
         }
