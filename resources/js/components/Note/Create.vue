@@ -37,7 +37,7 @@ export default {
                 name: this.name,
                 content: this.content,
             }).then((result) => {
-                router.push({name: 'note.index'});
+                router.push({ name: 'note.index' });
             });
         }
     },
