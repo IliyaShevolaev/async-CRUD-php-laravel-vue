@@ -1,4 +1,5 @@
 import './bootstrap';
+import '../css/Note/styles.css';
 
 import { createApp } from 'vue';
 const app = createApp({});

@@ -15,6 +15,11 @@ class NoteController extends Controller
         return $notes;
     }
 
+    public function show(Note $note) 
+    {
+        return $note;
+    }
+
     public function store(NoteRequest $storeRequest)
     {
         $data = $storeRequest->validated();

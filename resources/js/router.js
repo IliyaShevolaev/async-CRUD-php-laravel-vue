@@ -11,6 +11,11 @@ const routes = [
         name: 'note.create',
         component: () => import('./components/Note/Create.vue'),
     }, 
+    {
+        path: '/notes/edit/:id',
+        name: 'note.edit',
+        component: () => import('./components/Note/Edit.vue'),
+    }, 
 ];
 
 const router = createRouter({

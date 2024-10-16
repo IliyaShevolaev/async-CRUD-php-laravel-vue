@@ -1,4 +1,5 @@
-    <template>
+<template>
+    <div>
         <div>
             <div class="form-container">
                 <div class="note-form">
@@ -12,40 +13,57 @@
                             placeholder="Enter note..."></textarea>
                     </div>
                     <div class="d-grid">
-                        <button @click.prevent="store()" class="btn btn-secondary">Save</button>
+                        <button @click.prevent="updateNote()" class="btn btn-secondary">Save</button>
                     </div>
                 </div>
             </div>
         </div>
-    </template>
+    </div>
+</template>
 
 <script>
 import axios from 'axios';
 import router from '../../router';
 
 export default {
-    name: 'NoteIndexComponent', 
-
     data() {
         return {
+            id: null,
             name: null,
             content: null,
         }
     },
 
+    mounted() {
+        this.id = this.$route.params.id;
+        this.getNote();
+    },
+
     methods: {
-        store() {
-            axios.post('/api/notes/store', {
+        getNote() {
+            axios.get(`/api/notes/show/${this.id}`)
+                .then((result) => {
+                    this.name = result.data.name;
+                    this.content = result.data.content;
+                    console.log(this.name + ' ' + this.content);
+                });
+        },
+
+        updateNote() {
+            axios.patch(`/api/notes/update/${this.id}`, {
                 name: this.name,
                 content: this.content,
             }).then((result) => {
-                router.push({ name: 'note.index' });
+                router.push({name: 'note.index'});
             });
         }
     },
+
+    components: {
+        Create: () => import('./Create.vue'),
+    }
 }
 </script>
 
 <style>
-
 </style>
