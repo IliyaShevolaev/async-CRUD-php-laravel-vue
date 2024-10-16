@@ -43,6 +43,10 @@ export default {
                     this.notes = result.data;
                 });
         },
+
+        deleteNote(id) {
+            axios.delete(`/api/notes/destroy/${id}`).then((result) => {this.getNotes();});
+        }
     },
 }
 </script>
