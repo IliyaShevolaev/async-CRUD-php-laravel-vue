@@ -13,7 +13,7 @@
                             placeholder="Enter note..."></textarea>
                     </div>
                     <div class="d-grid">
-                        <button @click.prevent="updateNote()" class="btn btn-secondary">Save</button>
+                        <button @click.prevent="updateNote()" class="btn btn-secondary" :disabled="isDisabled">Save</button>
                     </div>
                 </div>
             </div>
@@ -23,7 +23,6 @@
 
 <script>
 import axios from 'axios';
-import router from '../../router';
 
 export default {
     data() {
@@ -43,9 +42,9 @@ export default {
         getNote() {
             axios.get(`/api/notes/show/${this.id}`)
                 .then((result) => {
-                    this.name = result.data.name;
-                    this.content = result.data.content;
-                    console.log(this.name + ' ' + this.content);
+                    this.name = result.data.data.name;
+                    this.content = result.data.data.content;
+                    console.log(result);
                 });
         },
 
@@ -54,14 +53,21 @@ export default {
                 name: this.name,
                 content: this.content,
             }).then((result) => {
-                router.push({name: 'note.index'});
+                this.$router.push({name: 'note.index'});
             });
+        }
+    },
+
+    computed: {
+        isDisabled() {
+            return !(this.name && this.content);
         }
     },
 
     components: {
         Create: () => import('./Create.vue'),
-    }
+    },
+    
 }
 </script>
 

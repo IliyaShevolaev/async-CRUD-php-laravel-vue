@@ -23,7 +23,6 @@
 
 <script>
 import axios from 'axios';
-import router from '../../router';
 
 export default {
     mounted() {
@@ -40,7 +39,7 @@ export default {
         getNotes() {
             axios.get('/api/notes/index')
                 .then((result) => {
-                    this.notes = result.data;
+                    this.notes = result.data.data;
                 });
         },
 

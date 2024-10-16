@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Note;
 use App\Http\Requests\Note\NoteRequest;
-use App\Http\Requests\Note\UpdateRequest;
+use App\Http\Resources\Note\NoteResourse;
 
 class NoteController extends Controller
 {
@@ -12,12 +12,12 @@ class NoteController extends Controller
     {
         $notes = Note::orderBy('id', 'asc')->get();
 
-        return $notes;
+        return NoteResourse::collection($notes);
     }
 
     public function show(Note $note) 
     {
-        return $note;
+        return new NoteResourse($note);
     }
 
     public function store(NoteRequest $storeRequest)
@@ -26,7 +26,7 @@ class NoteController extends Controller
 
         $note = Note::create($data);
 
-        return $note;
+        return response([], 200);
     }
 
     public function update(NoteRequest $updateRequest, Note $note)
@@ -35,12 +35,12 @@ class NoteController extends Controller
 
         $note->update($data);
 
-        return $note;
+        return response([], 200);
     }
 
     public function destroy(Note $note) 
     {
         $note->delete();
-        return response([]);
+        return response([], 200);
     }
 }

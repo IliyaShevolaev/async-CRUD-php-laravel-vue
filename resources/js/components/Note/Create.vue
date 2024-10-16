@@ -12,7 +12,7 @@
                             placeholder="Enter note..."></textarea>
                     </div>
                     <div class="d-grid">
-                        <button @click.prevent="store()" class="btn btn-secondary">Save</button>
+                        <button @click.prevent="store()" class="btn btn-secondary" :disabled="isDisabled">Save</button>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,6 @@
 
 <script>
 import axios from 'axios';
-import router from '../../router';
 
 export default {
     name: 'NoteIndexComponent', 
@@ -39,8 +38,15 @@ export default {
                 name: this.name,
                 content: this.content,
             }).then((result) => {
-                router.push({ name: 'note.index' });
+                console.log(result);
+                this.$router.push({ name: 'note.index' });
             });
+        }
+    },
+
+    computed: {
+        isDisabled() {
+            return !(this.name && this.content);
         }
     },
 }
