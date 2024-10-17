@@ -4,7 +4,10 @@
             <div class="col-md-6 offset-md-3">
                 <div class="card mb-4 position-relative">
                     <div class="card-body">
-                        <h5 class="card-title text-center">{{ note.name }}</h5>
+                        <!-- <h5 class="card-title text-center">{{ note.name }}</h5> -->
+                        <router-link :to="{name: 'note.show', params: {id: note.id}}">
+                            <h5 class="card-title text-center">{{ note.name }}</h5>
+                        </router-link>
                         <p class="card-text text-center">{{ note.content }}</p>
 
                         <a href="#" class="position-absolute top-0 start-0 mt-2 ms-2 text-decoration-none text-danger"
