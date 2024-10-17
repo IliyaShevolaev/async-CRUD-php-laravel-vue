@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Note;
 use App\Http\Requests\Note\NoteRequest;
 use App\Http\Resources\Note\NoteResourse;
+use App\Models\Image;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class NoteController extends Controller
 {
@@ -24,7 +27,18 @@ class NoteController extends Controller
     {
         $data = $storeRequest->validated();
 
+        $image = $data['image'];
+        unset($data['image']);
+
+        $imageName = md5(Carbon::now() . '_' . $image->getClientOriginalName() . '.' . $image->getClientOriginalExtension());
+        $filePath = Storage::disk('public')->putFileAs('/images', $image, $imageName);
+
         $note = Note::create($data);
+        Image::create([
+            'path' => $filePath,
+            'url' => url('/storage/' . $filePath),
+            'note_id' => $note->id,
+        ]);
 
         return response([], 200);
     }

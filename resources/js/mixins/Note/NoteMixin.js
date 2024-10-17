@@ -17,15 +17,6 @@ export default {
             });
         },
 
-        storeNote() {
-            axios.post('/api/notes/store', {
-                name: this.name,
-                content: this.content,
-            }).then((result) => {
-                this.$router.push({ name: 'note.index' });
-            });
-        },
-
         getNotes() {
             axios.get('/api/notes/index')
                 .then((result) => {

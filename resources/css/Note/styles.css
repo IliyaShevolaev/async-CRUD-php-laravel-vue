@@ -38,3 +38,21 @@
     flex-grow: 1;
     min-height: 400px;
 }
+
+.dropzone {
+    border: 2px dashed #6c757d;
+    padding: 30px;
+    text-align: center;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    color: #6c757d;
+}
+
+.dropzone .dz-message {
+    font-size: 1.2em;
+    color: #6c757d;
+}
+
+.dropzone .dz-preview .dz-image img {
+    width: 100px;
+}

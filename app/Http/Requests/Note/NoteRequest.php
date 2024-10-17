@@ -16,6 +16,7 @@ class NoteRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'content' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|',
         ];
     }
 }
