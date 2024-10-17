@@ -25,9 +25,11 @@
 </template>
 
 <script>
-import axios from 'axios';
+import mixin from '../../mixins/Note/NoteMixin';
 
 export default {
+    mixins: [mixin],
+
     mounted() {
         this.getNotes();
     },
@@ -35,19 +37,6 @@ export default {
     data() {
         return {
             notes: null,
-        }
-    },
-
-    methods: {
-        getNotes() {
-            axios.get('/api/notes/index')
-                .then((result) => {
-                    this.notes = result.data.data;
-                });
-        },
-
-        deleteNote(id) {
-            axios.delete(`/api/notes/destroy/${id}`).then((result) => {this.getNotes();});
         }
     },
 }

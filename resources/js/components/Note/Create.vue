@@ -12,7 +12,7 @@
                             placeholder="Enter note..."></textarea>
                     </div>
                     <div class="d-grid">
-                        <button @click.prevent="store()" class="btn btn-secondary" :disabled="isDisabled">Save</button>
+                        <button @click.prevent="storeNote()" class="btn btn-secondary" :disabled="isDisabled">Save</button>
                     </div>
                 </div>
             </div>
@@ -20,26 +20,17 @@
     </template>
 
 <script>
-import axios from 'axios';
+import mixin from '../../mixins/Note/NoteMixin';
 
 export default {
+    mixins: [mixin],
+
     name: 'NoteIndexComponent', 
 
     data() {
         return {
             name: null,
             content: null,
-        }
-    },
-
-    methods: {
-        store() {
-            axios.post('/api/notes/store', {
-                name: this.name,
-                content: this.content,
-            }).then((result) => {
-                this.$router.push({ name: 'note.index' });
-            });
         }
     },
 

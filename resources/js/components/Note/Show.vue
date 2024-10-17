@@ -20,29 +20,11 @@
 </template>
 
 <script>
+import NoteMixin from '../../mixins/Note/NoteMixin';
+import NoteGetMixin from '../../mixins/Note/GetNoteMixin';
+
 export default {
-    data() {
-        return {
-            id: null,
-            name: null,
-            content: null
-        }
-    },
-
-    mounted() {
-        this.id = this.$route.params.id;
-        this.getNote();
-    },
-
-    methods: {
-        getNote() {
-            axios.get(`/api/notes/show/${this.id}`)
-                .then((result) => {
-                    this.name = result.data.data.name;
-                    this.content = result.data.data.content;
-                });
-        }
-    },
+    mixins: [NoteMixin, NoteGetMixin],
 }
 </script>
 

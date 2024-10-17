@@ -22,40 +22,11 @@
 </template>
 
 <script>
-import axios from 'axios';
+import mixin from '../../mixins/Note/NoteMixin';
+import NoteGetMixin from '../../mixins/Note/GetNoteMixin';
 
 export default {
-    data() {
-        return {
-            id: null,
-            name: null,
-            content: null,
-        }
-    },
-
-    mounted() {
-        this.id = this.$route.params.id;
-        this.getNote();
-    },
-
-    methods: {
-        getNote() {
-            axios.get(`/api/notes/show/${this.id}`)
-                .then((result) => {
-                    this.name = result.data.data.name;
-                    this.content = result.data.data.content;
-                });
-        },
-
-        updateNote() {
-            axios.patch(`/api/notes/update/${this.id}`, {
-                name: this.name,
-                content: this.content,
-            }).then((result) => {
-                this.$router.push({name: 'note.index'});
-            });
-        }
-    },
+    mixins: [mixin, NoteGetMixin],
 
     computed: {
         isDisabled() {
