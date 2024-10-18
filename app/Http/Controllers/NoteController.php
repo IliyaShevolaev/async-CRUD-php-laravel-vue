@@ -20,6 +20,8 @@ class NoteController extends Controller
 
     public function show(Note $note) 
     {
+        $note->load('image');
+
         return new NoteResourse($note);
     }
 

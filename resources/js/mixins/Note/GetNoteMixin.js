@@ -3,7 +3,8 @@ export default {
         return {
             id: null,
             name: null,
-            content: null
+            content: null,
+            image_url: null,
         }
     },
 

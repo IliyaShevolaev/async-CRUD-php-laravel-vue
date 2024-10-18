@@ -14,6 +14,7 @@ class NoteResourse extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'content' => $this->content,
+            'image_url' => $this->image ? $this->image->url : null,
         ];
     }
 }

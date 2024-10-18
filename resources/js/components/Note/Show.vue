@@ -7,6 +7,10 @@
                         <h3 class="card-title text-center">{{ this.name }}</h3>
                         <p class="card-text">{{ this.content }}</p>
 
+                        <div v-if="image_url">
+                            <img :src="image_url" alt="Note Image" class="img-fluid mt-3" />
+                        </div>
+
                         <router-link 
                             to="/notes" 
                             class="btn btn-primary mt-3">
@@ -25,6 +29,12 @@ import NoteGetMixin from '../../mixins/Note/GetNoteMixin';
 
 export default {
     mixins: [NoteMixin, NoteGetMixin],
+
+    computed: {
+        image_url() {
+            return this.image_url;
+        },
+    }
 }
 </script>
 

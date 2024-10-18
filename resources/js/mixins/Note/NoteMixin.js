@@ -5,6 +5,7 @@ export default {
                 .then((result) => {
                     this.name = result.data.data.name;
                     this.content = result.data.data.content;
+                    this.image_url = result.data.data.image_url;
                 });
         },
 
